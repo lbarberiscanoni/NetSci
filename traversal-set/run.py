@@ -9,8 +9,8 @@ shortestPaths_raw = nx.shortest_path(fbGraph)
 #pprint(shortestPaths_raw)
 #print(shortestPaths_raw)
 
-i = 414
-j = 567
+i = "414"
+j = "567"
 
 shortestPaths_full = []
 for val in shortestPaths_raw:
@@ -18,8 +18,9 @@ for val in shortestPaths_raw:
 		shortestPath = shortestPaths_raw[val][path]
 		shortestPaths_full.append(shortestPath)
 
-traversalSet = [x for x in shortestPaths_full if i in x and j in x]
-print(traversalSet)
+traversalSet = [path for path in shortestPaths_full if (i in path and j in path)]
+for path in traversalSet:
+	print(path)
 
 
 
