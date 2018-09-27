@@ -1,5 +1,6 @@
 import networkx as nx
 from pprint import pprint
+import itertools
 
 fbGraph = nx.read_edgelist("facebook_combined.txt")
 
@@ -35,7 +36,12 @@ for path in traversalSet:
 # 	print(path)
 
 #compute the traversal set 
-print(len(traversalSet_noDuplicates))
+flatList = list(itertools.chain.from_iterable(traversalSet_noDuplicates))
+flatList_noDuplicates = set(flatList)
+
+print(flatList_noDuplicates)
+
+print(len(flatList_noDuplicates))
 
 
 #count the # of paths after you remove duplicates based on the endpoint (remember to check for inverses)
