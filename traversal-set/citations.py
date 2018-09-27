@@ -23,25 +23,25 @@ for val in shortestPaths_raw:
 		shortestPaths_full.append(shortestPath)
 
 #only get shortest paths with i and j in them
-traversalSet = [path for path in shortestPaths_full if (i in path and j in path)]
+shortestPaths_relevant = [path for path in shortestPaths_full if (i in path and j in path)]
 
 #narrow it to shortest paths where i and j are connected through just 1 edge
-traversalSet_noDuplicates = []
-for path in traversalSet:
+shortestPaths_narrow = []
+for path in shortestPaths_relevant:
 	subL = [ [ path[i], path[i +1] ] for i in range(len(path) - 1) ]
 	if [i, j] in subL:
-		traversalSet_noDuplicates.append(path)
+		shortestPaths_narrow.append(path)
 
-# for path in traversalSet_noDuplicates:
+# for path in shortestPaths_narrow:
 # 	print(path)
 
 #compute the traversal set 
-flatList = list(itertools.chain.from_iterable(traversalSet_noDuplicates))
-flatList_noDuplicates = set(flatList)
+flatList = list(itertools.chain.from_iterable(shortestPaths_narrow))
+traversalSet = set(flatList)
 
-print(flatList_noDuplicates)
+print(traversalSet)
 
-print(len(flatList_noDuplicates))
+print(len(traversalSet))
 
 
 #count the # of paths after you remove duplicates based on the endpoint (remember to check for inverses)
