@@ -7,10 +7,6 @@ fbGraph = nx.read_edgelist("facebook_combined.txt")
 #get all shortest paths
 shortestPaths_raw = nx.shortest_path(fbGraph)
 
-#all shortest paths
-#pprint(shortestPaths_raw)
-#print(shortestPaths_raw)
-
 #select i, j
 i = "414"
 j = "567"
@@ -35,11 +31,8 @@ for path in shortestPaths_relevant:
 		#print(path, subL, endpoints)
 		shortestPaths_narrow.append(endpoints)
 
-# for path in shortestPaths_narrow:
-# 	print(path)
 
-
-#compute the traversal set by removing duplicates 
+#compute the traversal set by removing duplicates explicitly
 shortestPaths_narrow.sort()
 traversalSet = list(x for x,_ in itertools.groupby(shortestPaths_narrow))
 
@@ -47,4 +40,4 @@ print("# of keys in the shortest path dictionary", len(shortestPaths_raw))
 print("# of all shortest paths", len(shortestPaths_full))
 print("# of shortests paths that include (i, j)", len(shortestPaths_relevant))
 print("# of shortest paths that include i and j connected through 1 edge", len(shortestPaths_narrow))
-print("# pairs in the traversal set", len(traversalSet))
+print("traversal set centrality", len(traversalSet))

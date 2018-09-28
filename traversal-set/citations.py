@@ -7,10 +7,6 @@ citGraph = nx.read_edgelist("cit-HepTh.txt")
 #get all shortest paths
 shortestPaths_raw = nx.shortest_path(citGraph)
 
-#all shortest paths
-#pprint(shortestPaths_raw)
-#print(shortestPaths_raw)
-
 #select i, j
 i = "9302103"
 j = "1103"
@@ -31,17 +27,17 @@ for path in shortestPaths_relevant:
 	subL = [ [ path[i], path[i +1] ] for i in range(len(path) - 1) ]
 
 	if [i, j] in subL:
-		endpoints = [path[0], path[len(subL)]]
-		# print(path, subL, endpoints)
+		endpoints = [path[0], path[len(path) - 1]]
+		#print(path, subL, endpoints)
 		shortestPaths_narrow.append(endpoints)
 
-# for path in shortestPaths_narrow:
-# 	print(path)
 
-
-#compute the traversal set by removing duplicates 
+#compute the traversal set by removing duplicates explicitly
 shortestPaths_narrow.sort()
 traversalSet = list(x for x,_ in itertools.groupby(shortestPaths_narrow))
 
-print(traversalSet)
-print(len(traversalSet))
+print("# of keys in the shortest path dictionary", len(shortestPaths_raw))
+print("# of all shortest paths", len(shortestPaths_full))
+print("# of shortests paths that include (i, j)", len(shortestPaths_relevant))
+print("# of shortest paths that include i and j connected through 1 edge", len(shortestPaths_narrow))
+print("traversal set centrality", len(traversalSet))
