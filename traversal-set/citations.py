@@ -29,21 +29,19 @@ shortestPaths_relevant = [path for path in shortestPaths_full if (i in path and 
 shortestPaths_narrow = []
 for path in shortestPaths_relevant:
 	subL = [ [ path[i], path[i +1] ] for i in range(len(path) - 1) ]
+
 	if [i, j] in subL:
-		shortestPaths_narrow.append(path)
+		endpoints = [path[0], path[len(subL)]]
+		# print(path, subL, endpoints)
+		shortestPaths_narrow.append(endpoints)
 
 # for path in shortestPaths_narrow:
 # 	print(path)
 
-#compute the traversal set 
-flatList = list(itertools.chain.from_iterable(shortestPaths_narrow))
-traversalSet = set(flatList)
+
+#compute the traversal set by removing duplicates 
+shortestPaths_narrow.sort()
+traversalSet = list(x for x,_ in itertools.groupby(shortestPaths_narrow))
 
 print(traversalSet)
-
 print(len(traversalSet))
-
-
-#count the # of paths after you remove duplicates based on the endpoint (remember to check for inverses)
-#
-
