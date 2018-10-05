@@ -7,9 +7,9 @@ sparse_mat = scipy.io.mmread('as-22july06.mtx')
 
 G = nx.from_scipy_sparse_matrix(sparse_mat)
 
-#results = powerlaw.Fit(G)
+degree_sequence = sorted([y for x, y in G.degree()], reverse=True)
 
-#powerlaw.plot_cdf(data=results)
-powerlaw.plot_cdf(data=G)
-print("plotted")
-plt.show()
+powerlaw.plot_cdf(degree_sequence)
+
+# plt.show()
+plt.savefig("cumulative-degree-distribution.png")
