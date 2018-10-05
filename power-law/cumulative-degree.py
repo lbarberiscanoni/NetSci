@@ -10,3 +10,4 @@ G = nx.from_scipy_sparse_matrix(sparse_mat)
 results = powerlaw.Fit(G)
 
 powerlaw.plot_cdf(data=results)
+plt.show()
